@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FSKTM IT Club</title>
+
+  <style>
+    /* ---------- Colour theme (taken from the header image) ---------- */
+    :root {
+      --navy-900: #0a1a38;     /* darkest navy */
+      --navy-800: #10244a;     /* header left side */
+      --navy-700: #14375a;     /* header right side */
+      --cyan: #00cdd3;         /* header stripes */
+      --cyan-light: #7ee8ec;   /* header glow */
+      --page-bg: #eef9fb;      /* very light cyan tint */
+      --text: #12294d;
+    }
+
+    /* ---------- Task 2: Page reset ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--navy-900);
+    }
+
+    /* ---------- Task 2: Main container ---------- */
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 600px;
+    }
+
+    /* ---------- Task 2: Major regions (stacked vertically) ---------- */
+    .logo       { min-height: 100px; margin-top: 10px; }
+    .navigation { min-height: 50px;  margin-top: 10px; }
+    .content    { min-height: 400px; margin-top: 10px; }
+    .footer     { min-height: 20px;  margin-top: 10px; }
+
+    /* ---------- Logo / Header (uses header.jpg) ---------- */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      aspect-ratio: 5 / 1;            /* same shape as the image */
+      max-height: 240px;
+      padding: 15px 6%;
+      background-color: var(--navy-800);
+      background-image: url("header.jpg");
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
+      color: #ffffff;
+    }
+
+    .logo h1 {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    .logo h1 span {
+      color: var(--cyan);
+    }
+
+    .logo p {
+      font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+      color: var(--cyan-light);
+      margin-top: 4px;
+    }
+
+    /* ---------- Navigation ---------- */
+    .navigation {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--navy-800);
+      border-bottom: 3px solid var(--cyan);
+    }
+
+    .navigation a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navigation a:hover {
+      background-color: var(--cyan);
+      color: var(--navy-900);
+    }
+
+    /* ---------- Task 2: Content layout (row) ---------- */
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    /* ---------- Task 2: Two content columns ---------- */
+    .side-bar {
+      width: 20%;
+      min-height: 400px;
+      padding: 20px;
+      background-color: var(--navy-700);
+      color: #ffffff;
+    }
+
+    .side-bar h3 {
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      color: var(--cyan);
+      font-size: 1.2rem;
+      border-bottom: 2px solid var(--cyan);
+    }
+
+    .side-bar ul {
+      list-style: none;
+    }
+
+    .side-bar li {
+      margin-bottom: 12px;
+    }
+
+    .side-bar a {
+      color: var(--cyan-light);
+      text-decoration: none;
+      font-size: 0.95rem;
+      overflow-wrap: break-word;
+    }
+
+    .side-bar a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .body-area {
+      width: 70%;
+      min-height: 400px;
+      padding: 25px;
+      background-color: var(--page-bg);
+    }
+
+    .body-area h2 {
+      color: var(--navy-700);
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      padding-bottom: 2px;
+      border-bottom: 3px solid var(--cyan);
+      display: inline-block;
+    }
+
+    .body-area p {
+      margin-bottom: 22px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    /* ---------- Footer ---------- */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background-color: var(--navy-800);
+      border-top: 3px solid var(--cyan);
+      color: #ffffff;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* ---------- Responsive design (media query) ---------- */
+    @media (max-width: 768px) {
+      .logo {
+        aspect-ratio: auto;
+        min-height: 140px;
+        align-items: center;
+        text-align: center;
+        /* dark overlay so the text stays readable over the stripes */
+        background-image:
+          linear-gradient(rgba(10, 26, 56, 0.72), rgba(10, 26, 56, 0.72)),
+          url("header.jpg");
+        background-position: center, 85% center;
+      }
+
+      .content {
+        flex-direction: column;      /* side-bar stacks above body */
+      }
+
+      .side-bar,
+      .body-area {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .body-area {
+        margin-top: 10px;
+      }
+
+      .navigation {
+        flex-direction: column;      /* links stack vertically */
+      }
+
+      .navigation a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- 1. Logo / Header -->
+    <div class="logo">
+      <h1>FSKTM <span>IT Club</span></h1>
+      <p>Learn. Connect. Create.</p>
+    </div>
+
+    <!-- 2. Navigation -->
+    <div class="navigation">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Events</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- 3. Content (side-bar + body area) -->
+    <div class="content">
+
+      <div class="side-bar">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Join the Club</a></li>
+          <li><a href="#">Upcoming Workshops</a></li>
+          <li><a href="#">Student Portal</a></li>
+          <li><a href="#">Faculty Website</a></li>
+        </ul>
+      </div>
+
+      <div class="body-area">
+        <h2>Welcome to FSKTM IT Club</h2>
+        <p>
+          The FSKTM IT Club is a student-run community for anyone who loves
+          technology. We bring together students from the Faculty of Computer
+          Science and Information Technology to learn, share ideas and build
+          real projects together.
+        </p>
+
+        <h2>What We Do</h2>
+        <p>
+          Throughout the semester we organise coding workshops, hackathons,
+          industry talks and friendly competitions. Whether you are a beginner
+          or an experienced programmer, there is always something for you to
+          join and enjoy.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- 4. Footer -->
+    <div class="footer">
+      <p>&copy; 2026 FSKTM IT Club | Your Name (Matric No.)</p>
+    </div>
+
+  </div>
+</body>
+</html>
